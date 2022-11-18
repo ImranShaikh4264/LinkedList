@@ -8,10 +8,12 @@ public class LinkedListMain {
 		list.add(56);
 		list.display();
 		
+		
 		System.out.println("");
-		System.out.println(list.pop());
+		System.out.println(list.popLast());
 		list.display();
 		
+
 	}
 
 }
