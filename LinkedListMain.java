@@ -11,7 +11,12 @@ public class LinkedListMain {
 		
 		System.out.println(list.insertAfter(30, 40));
 		list.display();
-		
+		System.out.println();
+
+		list.popElement(40);
+		list.display();
+		System.out.println();
+		System.out.println(list.size());
 
 	}
 
