@@ -8,11 +8,9 @@ public class LinkedListMain {
 		list.add(56);
 		list.display();
 		
-		if (list.search(30) != null) {
-			System.out.println("data found");
-		} else {
-			System.out.println("data not found");
-		}
+		
+		System.out.println(list.insertAfter(30, 40));
+		list.display();
 		
 
 	}
