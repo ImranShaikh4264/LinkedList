@@ -1,97 +1,103 @@
 package com.bridgelab.linkedlist;
 
-public class LinkedList<T> {
-	Node<T> head;
-	Node<T> tail;
+public class LinkedList<T> { Node<T> head;
+Node<T> tail;
 
-	void add(T key) {
-		Node<T> node = new Node<>(key);
-		if (head == null) {
-			head = node;
-			tail = node;
-		} else {
-			node.next = head;
-			head = node;
-		}
-	}
+void add(T key){
+    Node<T> node = new Node<>(key);
+    if(head == null){
+        head = node;
+        tail = node;
+    }
+    else{
+        node.next = head;
+        head = node;
+    }
+}
 
-	void append(T key) {
-		Node<T> node = new Node<>(key);
-		if (head == null) {
-			head = node;
-			tail = node;
-		}
-		tail.next = node;
-		tail = node;
+void append(T key){
+    Node<T> node = new Node<>(key);
+    if(head == null){
+        head = node;
+        tail = node;
+    }else{
+        tail.next = node;
+        tail = node;
+    }
+}
 
-	}
+void insert(T key){
+    Node<T> node = new Node<>(key);
+    head.next = node;
+    node.next = tail;
+}
 
-	T pop() {
-		T deletedElement = (T) head.key;
-		head = head.next;
-		return deletedElement;
-	}
+T pop(){
+    T deletedElement = head.key;
+    head = head.next;
+    return deletedElement;
+}
 
-	T popLast() {
-		T deletedElement = (T) tail.key;
-		Node<T> temp = head;
-		while (temp.next != null) {
-			temp = temp.next;
-		}
-		temp.next = null;
-		temp = tail;
-		return deletedElement;
+T popLast(){
+    T deletedElement = tail.key;
+    Node<T> temp = head;
+    while(temp.next != tail){
+        temp = temp.next;
+    }
+    temp.next = null;
+    temp = tail;
+    return deletedElement;
+}
 
-	}
+public Node<T> search(T key){
+    Node<T> temp = head;
+    while(temp != null){
+        if(temp.key.equals(key))
+            return temp;
+            temp = temp.next;
+    }
+    return null;
+}
 
-	public Node<T> search(T key) {
-		Node<T> temp = head;
-		while (temp != null) {
-			if (temp.key.equals(key)) {
-				return temp;
-			}
-			temp = temp.next;
-		}
-		return null;
+public boolean insertAfter(T searchData, T insertData){
+    Node<T> node = new Node<>(insertData);
+    Node<T> searchedNode = search(searchData);
+    if(searchedNode != null){
+        node.next = searchedNode.next;
+        searchedNode.next = node;
+        return true;
+    }
+    return false;
+}
 
-	}
+public void popElement(T key){
+    Node<T> searchedNode = search(key);
+    Node<T> temp = head;
+    while(temp.next != searchedNode){
+        temp = temp.next;
+    }
+    temp.next = searchedNode.next;
+}
 
-	public boolean insert(T searchData, T insertData) {
-		Node<T> node = new Node<>(insertData);
-		Node<T> searchNode = search(searchData);
-		if (searchNode != null) {
-			node.next = searchNode.next;
-			searchNode.next = node;
-			return true;
-		}
-		return false;
+public int size(){
+   int count = 0;
+   Node<T> temp = head;
+   while(temp != null){
+       temp = temp.next;
+       count++;
+   }
+   return count;
+}
 
-	}
+public T peek(){
+    return head.key;
+}
 
-	public void popElement(T key) {
-		Node<T> searchNode = search(key);
-		Node<T> temp = head;
-		while (temp.next != searchNode) {
-			temp = temp.next;
-		}
-		temp.next = searchNode.next;
-	}
-
-	public int size() {
-		int count = 0;
-		Node<T> temp = head;
-		while (temp != null) {
-			temp = temp.next;
-			count++;
-		}
-		return count;
-	}
-
-	void display() {
-		Node<T> temp = head;
-		while (temp != null) {
-			System.out.print(" " + temp.key);
-		temp = temp.next;
-		}
-	}
+void display(){
+    Node<T> temp = head;
+    while(temp != null){
+        System.out.print(temp.key + " ");
+        temp = temp.next;
+    }
+}
 }

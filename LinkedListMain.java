@@ -3,11 +3,14 @@ package com.bridgelab.linkedlist;
 public class LinkedListMain {
 	public static void main(String[] args) {
 		LinkedList<Integer> list = new LinkedList<>();
-		
-		list.append(56);
-		list.append(30);
-		list.append(70);
+		list.add(70);
+		//list.add(30);
+		list.add(56);
+		list.display();
+		System.out.println("");
+		list.insert(30);
 		list.display();
 		
 	}
+
 }
